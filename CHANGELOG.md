@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [1.1.0](https://github.com/sravioli/ribbon.wz/compare/33400e9ba11947bac3b34b1aad91973e66a1748f..1.1.0) - 2026-05-08
+#### Features
+- (**api**) support raw format items - ([a19b00c](https://github.com/sravioli/ribbon.wz/commit/a19b00c176f6a2dd7d53a6429926e5c06d5e0a37)) - sravioli
+- (**config**) validate attributes by default - ([f62e883](https://github.com/sravioli/ribbon.wz/commit/f62e8838cbc62d41b305132a32361397b5d1903b)) - sravioli
+#### Documentation
+- (**readme**) improve readme consistency - ([bfe66db](https://github.com/sravioli/ribbon.wz/commit/bfe66dbb21785c76f872170d16ac6806c4d41866)) - sravioli
+- (**readme**) explain configuration options - ([33400e9](https://github.com/sravioli/ribbon.wz/commit/33400e9ba11947bac3b34b1aad91973e66a1748f)) - sravioli
+
+- - -
+
 ## [1.0.0](https://github.com/sravioli/ribbon.wz/compare/a534296996bd041cbedad65766d5419abc1760fa..1.0.0) - 2026-05-08
 #### Features
 - (**ribbon**) add standalone formatted text plugin - ([a534296](https://github.com/sravioli/ribbon.wz/commit/a534296996bd041cbedad65766d5419abc1760fa)) - sravioli
