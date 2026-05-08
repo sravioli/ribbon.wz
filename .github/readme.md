@@ -100,7 +100,7 @@ ribbon.setup {
     highlight = { "Bold", "Single" },
   },
 
-  validate_attributes = false,
+  validate_attributes = true,
   strict_mode = false,
 
   text = {
@@ -244,11 +244,8 @@ That applies `Bold`, then `Single`.
 
 ### `validate_attributes` and `strict_mode`
 
-By default, Ribbon is permissive. If an attribute cannot be emitted, Ribbon logs
-the problem but keeps loading the config.
-
-Turn on validation when you want a clearer warning before the emitter reaches
-that point:
+By default, Ribbon validates attribute names. If an attribute cannot be emitted,
+Ribbon logs the problem but keeps loading the config.
 
 ```lua
 ribbon.setup {
@@ -260,6 +257,9 @@ ribbon.setup {
 With `validate_attributes = true`, Ribbon warns when you pass a name that is not
 in `defaults.attributes` or `attribute_aliases`. With `strict_mode = true`, that
 warning becomes an error.
+
+You can set `validate_attributes = false` if you want the older permissive
+behavior.
 
 ### `text`
 

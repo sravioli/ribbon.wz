@@ -73,7 +73,7 @@ local defaults = {
     subtle = { "Half", "Italic" },
   },
 
-  validate_attributes = false,
+  validate_attributes = true,
   strict_mode = false,
 
   text = {

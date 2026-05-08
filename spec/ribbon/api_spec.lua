@@ -95,9 +95,8 @@ describe("ribbon.wz", function()
     }, r:items())
   end)
 
-  it("warns for unknown attributes when validation is enabled", function()
+  it("warns for unknown attributes by default", function()
     ribbon.setup {
-      validate_attributes = true,
       log = { enabled = true, threshold = "WARN" },
     }
 
