@@ -1,14 +1,15 @@
 # ribbon.wz
 
+[![Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/michaelbrusegard/awesome-wezterm)
 [![Tests](https://img.shields.io/github/actions/workflow/status/sravioli/ribbon.wz/tests.yaml?label=Tests&logo=Lua)](https://github.com/sravioli/ribbon.wz/actions?workflow=tests)
 [![Lint](https://img.shields.io/github/actions/workflow/status/sravioli/ribbon.wz/lint.yaml?label=Lint&logo=Lua)](https://github.com/sravioli/ribbon.wz/actions?workflow=lint)
 [![Coverage](https://img.shields.io/coverallsCoverage/github/sravioli/ribbon.wz?label=Coverage&logo=coveralls)](https://coveralls.io/github/sravioli/ribbon.wz)
 
 Formatted text ribbons for [WezTerm](https://wezfurlong.org/wezterm/).
 
-Ribbon builds `wezterm.format()` item lists with a small chainable API. It is
-intended for status bars, tab titles, command hints, separators, and other places
-where a terminal UI needs short colored text segments.
+Ribbon builds `wezterm.format()` item lists with a small chainable API. Use it
+for status bars, tab titles, command hints, separators, and other places where a
+terminal UI needs short colored text segments.
 
 - Append or prepend colored text segments
 - Use WezTerm ANSI color names or arbitrary color strings
@@ -31,9 +32,9 @@ local ribbon = wezterm.plugin.require("file:///" .. wezterm.config_dir .. "/plug
 
 ### Type annotations
 
-The modules include LuaCATS annotations. After installing
+Ribbon ships LuaCATS annotations. After installing
 [wezterm-types](https://github.com/DrKJeff16/wezterm-types), annotate the import
-to get autocompletion and type checking:
+to get completion and type checking:
 
 ```lua
 ---@type Ribbon.Api
@@ -345,5 +346,5 @@ renderers.
 
 ## License
 
-Code is licensed under the GNU GPLv3. Documentation is licensed separately under
-the terms in `LICENSE-DOCS`.
+Code is licensed under the [GNU General Public License v3](../LICENSE).
+Documentation is licensed under the terms in [LICENSE-DOCS](../LICENSE-DOCS).
