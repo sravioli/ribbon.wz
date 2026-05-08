@@ -122,6 +122,37 @@ local function insert_attributes(layout, attributes, idx, log)
   end
 end
 
+---@param item any
+---@return boolean
+local function is_format_item_array(item)
+  return type(item) == "table" and #item > 0
+end
+
+---@param layout table
+---@param items table|string|nil
+---@param prepend? boolean
+local function insert_format_items(layout, items, prepend)
+  if items == nil then
+    return
+  end
+
+  if not is_format_item_array(items) then
+    tinsert(layout, prepend and 1 or #layout + 1, items)
+    return
+  end
+
+  if prepend then
+    for i = #items, 1, -1 do
+      tinsert(layout, 1, items[i])
+    end
+    return
+  end
+
+  for _, item in ipairs(items) do
+    tinsert(layout, item)
+  end
+end
+
 ---Create a new Ribbon instance.
 ---@param name? string
 ---@param atomic? boolean
@@ -188,6 +219,22 @@ end
 ---@return Ribbon|nil self
 function M:prepend(background, foreground, text, attributes)
   return M.add(self, "prepend", background, foreground, text, attributes)
+end
+
+---Append raw `wezterm.format` items to the ribbon.
+---@param items table|string|nil FormatItem or FormatItem[].
+---@return Ribbon self
+function M:append_items(items)
+  insert_format_items(self.layout, items, false)
+  return self
+end
+
+---Prepend raw `wezterm.format` items to the ribbon.
+---@param items table|string|nil FormatItem or FormatItem[].
+---@return Ribbon self
+function M:prepend_items(items)
+  insert_format_items(self.layout, items, true)
+  return self
 end
 
 ---Clear all elements from the ribbon.

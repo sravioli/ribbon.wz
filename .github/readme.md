@@ -322,6 +322,24 @@ Adds a segment to the end of the ribbon.
 
 Adds a segment to the beginning of the ribbon.
 
+### `Ribbon:append_items(items)`
+
+Appends one raw `wezterm.format()` item, or an array of items, without applying
+Ribbon color, attribute, text, or atomic processing.
+
+```lua
+title:append_items {
+  { Foreground = { Color = "#57A143" } },
+  { Text = "nvim" },
+  "ResetAttributes",
+}
+```
+
+### `Ribbon:prepend_items(items)`
+
+Prepends one raw `wezterm.format()` item, or an array of items, while preserving
+the order you pass in.
+
 ### `Ribbon:clear()`
 
 Removes all format items from the instance and returns it, so the same Ribbon can

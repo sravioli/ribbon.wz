@@ -74,6 +74,65 @@ describe("ribbon.wz", function()
     }, r:items())
   end)
 
+  it("appends raw wezterm format items without processing", function()
+    ribbon.setup {
+      text = {
+        transform = function(text)
+          return text:upper()
+        end,
+      },
+    }
+
+    local r = ribbon.new("Raw", true)
+
+    r:append("Blue", "White", "x"):append_items {
+      { Foreground = { Color = "#57A143" } },
+      { Text = "nvim" },
+      "ResetAttributes",
+    }
+
+    assert.are.same({
+      { Background = { AnsiColor = "Blue" } },
+      { Foreground = { AnsiColor = "White" } },
+      { Text = "X" },
+      "ResetAttributes",
+      { Foreground = { Color = "#57A143" } },
+      { Text = "nvim" },
+      "ResetAttributes",
+    }, r:items())
+  end)
+
+  it("prepends raw wezterm format items in the provided order", function()
+    local r = ribbon.new "RawPrepend"
+
+    r:append("Blue", "White", "tail"):prepend_items {
+      { Foreground = { Color = "#57A143" } },
+      { Text = "nvim" },
+      "ResetAttributes",
+    }
+
+    assert.are.same({
+      { Foreground = { Color = "#57A143" } },
+      { Text = "nvim" },
+      "ResetAttributes",
+      { Background = { AnsiColor = "Blue" } },
+      { Foreground = { AnsiColor = "White" } },
+      { Text = "tail" },
+    }, r:items())
+  end)
+
+  it("accepts a single raw format item", function()
+    local r = ribbon.new "SingleRaw"
+
+    r:append_items { Text = "x" }
+    r:prepend_items "ResetAttributes"
+
+    assert.are.same({
+      "ResetAttributes",
+      { Text = "x" },
+    }, r:items())
+  end)
+
   it("processes text with strip, transform, and max length", function()
     ribbon.setup {
       text = {
