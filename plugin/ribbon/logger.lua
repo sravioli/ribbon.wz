@@ -69,15 +69,18 @@ end
 ---@param message string
 local function emit(level, tag, message)
   local line = string.format("[%s] %s", tag, message)
+  local sink
 
   if level >= levels.ERROR and type(wezterm.log_error) == "function" then
-    wezterm.log_error(line)
+    sink = wezterm.log_error
   elseif level >= levels.WARN and type(wezterm.log_warn) == "function" then
-    wezterm.log_warn(line)
-  elseif level >= levels.INFO and type(wezterm.log_info) == "function" then
-    wezterm.log_info(line)
+    sink = wezterm.log_warn
   elseif type(wezterm.log_info) == "function" then
-    wezterm.log_info(line)
+    sink = wezterm.log_info
+  end
+
+  if sink then
+    sink(line)
   end
 end
 
