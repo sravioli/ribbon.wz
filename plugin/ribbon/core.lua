@@ -8,7 +8,7 @@ local tinsert = table.insert
 
 ---@class Ribbon
 ---@field log Ribbon.Logger Logger instance.
----@field public atomic? boolean Whether to reset text attributes after each operation.
+---@field public atomic? boolean Reset text attributes after each operation.
 ---@field private layout table Internal format items.
 ---@field private name string Ribbon identifier.
 local M = {}
@@ -173,7 +173,7 @@ function M.new(name, atomic)
   }, M)
 end
 
----Add an element into the ribbon.
+---Add one styled text segment.
 ---@param action "append"|"prepend"
 ---@param background? string
 ---@param foreground? string
@@ -221,7 +221,7 @@ function M:prepend(background, foreground, text, attributes)
   return M.add(self, "prepend", background, foreground, text, attributes)
 end
 
----Append raw `wezterm.format` items to the ribbon.
+---Append raw `wezterm.format` items.
 ---@param items table|string|nil FormatItem or FormatItem[].
 ---@return Ribbon self
 function M:append_items(items)
@@ -229,7 +229,7 @@ function M:append_items(items)
   return self
 end
 
----Prepend raw `wezterm.format` items to the ribbon.
+---Prepend raw `wezterm.format` items.
 ---@param items table|string|nil FormatItem or FormatItem[].
 ---@return Ribbon self
 function M:prepend_items(items)
@@ -257,7 +257,7 @@ function M:format()
 end
 
 ---Log the ribbon to the debug console.
----@param formatted boolean Whether to log the formatted string or raw table.
+---@param formatted boolean Log the formatted string when true, or the raw table when false.
 ---@return nil
 function M:debug(formatted)
   self.log:info(self.name .. " formatted: %s", formatted and self:format() or self.layout)
