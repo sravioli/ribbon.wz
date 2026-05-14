@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [1.1.1](https://github.com/sravioli/ribbon.wz/compare/fbd63f7dd5353864fc26f317bb1cea961e8e2031..1.1.1) - 2026-05-14
+#### Documentation
+- (**github**) add pull request templates - ([b629a1f](https://github.com/sravioli/ribbon.wz/commit/b629a1f5b2884b1c0172c5c036a30de66c4f2ca8)) - sravioli
+- (**github**) polish issue templates - ([069bd74](https://github.com/sravioli/ribbon.wz/commit/069bd74fdc7f21e219926ee979414eb58ddb9657)) - sravioli
+- (**lua**) polish comment wording - ([b453061](https://github.com/sravioli/ribbon.wz/commit/b4530613524a814e19a24fa81ff6032b8e4d8431)) - sravioli
+- (**readme**) restore Awesome WezTerm badge - ([b78bf0e](https://github.com/sravioli/ribbon.wz/commit/b78bf0e1b13b2eabde2181d36325d8629e7b7cb7)) - sravioli
+- (**readme**) hide pending upstream claims - ([fbd63f7](https://github.com/sravioli/ribbon.wz/commit/fbd63f7dd5353864fc26f317bb1cea961e8e2031)) - sravioli
+#### Refactoring
+- (**config**) delegate table helpers to warp.wz - ([839e9ad](https://github.com/sravioli/ribbon.wz/commit/839e9addc1a821df52f52c244dd758fb9b08fe5c)) - sravioli
+
+- - -
+
 ## [1.1.0](https://github.com/sravioli/ribbon.wz/compare/33400e9ba11947bac3b34b1aad91973e66a1748f..1.1.0) - 2026-05-08
 #### Features
 - (**api**) support raw format items - ([a19b00c](https://github.com/sravioli/ribbon.wz/commit/a19b00c176f6a2dd7d53a6429926e5c06d5e0a37)) - sravioli
