@@ -30,6 +30,9 @@ local ribbon = wezterm.plugin.require "https://github.com/sravioli/ribbon.wz"
 local ribbon = wezterm.plugin.require("file:///" .. wezterm.config_dir .. "/plugins/ribbon.wz")
 ```
 
+Ribbon loads [`warp.wz`](https://github.com/sravioli/warp.wz) automatically for
+table helpers used by its configuration layer.
+
 <!--
 ### Type annotations
 
