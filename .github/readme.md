@@ -310,6 +310,11 @@ local never_atomic = ribbon:new("NeverAtomic", false)
 
 ## API
 
+### `ribbon.config`
+
+- `ribbon.config.get()` returns the active configuration.
+- `ribbon.config.defaults()` returns a copy of the default configuration.
+
 ### `ribbon.setup(opts)`
 
 Configures Ribbon and returns the active config table.
