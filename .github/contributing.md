@@ -49,9 +49,9 @@ You need:
 3. To test the plugin locally, point your WezTerm config at the checkout:
 
    ```lua
-   local ribbon = wezterm.plugin.require(
-     "file:///" .. wezterm.config_dir .. "/plugins/ribbon.wz"
-   )
+   local root = wezterm.home_dir .. "/path/to/ribbon.wz/plugin/"
+   package.path = root .. "?.lua;" .. root .. "?/init.lua;" .. package.path
+   local ribbon = require "ribbon.api"
    ```
 
    This plugin validates its options with warden.wz. Specs load it from a sibling

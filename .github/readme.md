@@ -244,14 +244,14 @@ For [issues](https://github.com/sravioli/ribbon.wz/issues), include the raw
 
 ### Local checkout
 
-Clone into `plugins/ribbon.wz` beneath `wezterm.config_dir`. Replace the
-remote import:
+Load the working tree directly, so edits take effect on the next config
+reload without a commit or a plugin update. Adjust the path to your clone:
 
 ```lua
 local wezterm = require "wezterm"
-local ribbon = wezterm.plugin.require(
-  "file:///" .. wezterm.config_dir .. "/plugins/ribbon.wz"
-)
+local root = wezterm.home_dir .. "/path/to/ribbon.wz/plugin/"
+package.path = root .. "?.lua;" .. root .. "?/init.lua;" .. package.path
+local ribbon = require "ribbon.api"
 ```
 
 Warp and Warden must also be available through the normal loader or `package.path`.
