@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [1.1.2](https://github.com/sravioli/ribbon.wz/compare/9730089e6105541b693be324bf7b569f81c6d61c..1.1.2) - 2026-11-15
+#### Performance Improvements
+- (**bootstrap**) keep plugin list across reloads - ([0384371](https://github.com/sravioli/ribbon.wz/commit/03843716911d23e642e2e6200bbf153d1ed3ed37)) - sravioli
+- (**bootstrap**) share plugin discovery snapshot - ([9730089](https://github.com/sravioli/ribbon.wz/commit/9730089e6105541b693be324bf7b569f81c6d61c)) - sravioli
+#### Documentation
+- (**readme**) update plugin READMEs - ([ea2c66e](https://github.com/sravioli/ribbon.wz/commit/ea2c66e8ee32fec07bad9b2b4d8e534c15a0ddca)) - sravioli
+- document Ribbon config accessors - ([ec287ee](https://github.com/sravioli/ribbon.wz/commit/ec287ee5381fe410ed84e6d3b9b2d43430552da5)) - sravioli
+
+- - -
+
 ## [1.1.1](https://github.com/sravioli/ribbon.wz/compare/fbd63f7dd5353864fc26f317bb1cea961e8e2031..1.1.1) - 2026-05-14
 #### Documentation
 - (**github**) add pull request templates - ([b629a1f](https://github.com/sravioli/ribbon.wz/commit/b629a1f5b2884b1c0172c5c036a30de66c4f2ca8)) - sravioli
