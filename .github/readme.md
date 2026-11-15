@@ -22,9 +22,9 @@ format-item list.
 Requires **WezTerm [`20230320-124340-559cb7b0`](https://wezterm.org/config/lua/wezterm.plugin/require.html)
 or newer** and Git. No special font is required for plain text.
 
-Automatically loads [warp.wz](https://github.com/sravioli/warp.wz), preferring
-`warp.api` on `package.path`; dependency failure raises.
-
+Automatically loads [warp.wz](https://github.com/sravioli/warp.wz) and
+[warden.wz](https://github.com/sravioli/warden.wz), preferring local API modules
+on `package.path`; dependency failure raises. Invalid options are logged and ignored.
 ### Install and run
 
 Put this in `wezterm.lua`:
@@ -138,6 +138,7 @@ the built-in attribute and color maps.
 | `defaults.colors.Fuchsia` | `boolean` | `true` | Recognize as an ANSI color name. |
 | `defaults.colors.Aqua` | `boolean` | `true` | Recognize as an ANSI color name. |
 | `defaults.colors.White` | `boolean` | `true` | Recognize as an ANSI color name. |
+| `validate` | `boolean` | `true` | Check options with [warden.wz](https://github.com/sravioli/warden.wz). Set `false` to skip checks and never load warden. |
 | `attribute_aliases.b` | `string` | `"Bold"` | Short attribute alias. |
 | `attribute_aliases.i` | `string` | `"Italic"` | Short attribute alias. |
 | `attribute_aliases.u` | `string` | `"Single"` | Single underline. |
@@ -156,6 +157,17 @@ the built-in attribute and color maps.
 The attribute map is a registry, not a set applied to every segment.
 Truthy entries in the color-name map emit `AnsiColor`; other strings emit
 literal `Color`. Extend these maps through setup as needed.
+
+#### Option validation
+
+Options are checked against a schema when you call setup. Invalid fields are logged and ignored, and the rest still apply; unknown keys in fixed sections log a warning.
+Set `validate = false` once your configuration is stable: warden is then never
+downloaded or loaded, and the options are used exactly as written, so typos and
+wrong types go unnoticed.
+
+```lua
+ribbon.setup { validate = false }
+```
 
 ### Behavior and precedence
 
@@ -242,7 +254,7 @@ local ribbon = wezterm.plugin.require(
 )
 ```
 
-Warp must also be available through the normal loader or `package.path`.
+Warp and Warden must also be available through the normal loader or `package.path`.
 
 ### Editor support
 
@@ -263,14 +275,13 @@ From the repository root, with Lua 5.4 and the named tools installed:
 
 ```sh
 busted --verbose
-luacheck plugin
+luacheck plugin spec
 selene --display-style=quiet plugin
-stylua --check .
+stylua --check plugin spec
 ```
 
-Specs mock WezTerm and Warp. The [contribution guide](contributing.md) contains
-copied Memo-specific prose; use this repository's commands and source
-as your reference. Use Conventional Commits.
+Specs mock WezTerm and Warp and load a sibling `../warden.wz` checkout. See the
+[contribution guide](contributing.md) and use Conventional Commits.
 
 ## License
 
