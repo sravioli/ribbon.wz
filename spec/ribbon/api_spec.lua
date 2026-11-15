@@ -199,4 +199,74 @@ describe("ribbon.wz", function()
     assert.is_true(ok)
     assert.is_table(mod)
   end)
+
+  describe("option validation", function()
+    local function logged(fn_name)
+      local n = 0
+      for _, call in ipairs(wezterm._calls) do
+        if call.fn == fn_name then
+          n = n + 1
+        end
+      end
+      return n
+    end
+
+    it("logs a wrong type and keeps the default and the valid fields", function()
+      local cfg = ribbon.setup { strict_mode = "yes", atomic = true }
+
+      assert.is_false(cfg.strict_mode)
+      assert.is_true(cfg.atomic)
+      assert.are.equal(1, logged "log_error")
+    end)
+
+    it("warns about unknown keys in fixed sections", function()
+      ribbon.setup { text = { stip = true } }
+
+      assert.are.equal(1, logged "log_warn")
+    end)
+
+    it("still extends defaults with custom aliases and accepts a transform", function()
+      local transform = function(text)
+        return text
+      end
+      local cfg = ribbon.setup {
+        attribute_aliases = { loud = "Bold" },
+        text = { transform = transform },
+      }
+
+      assert.are.equal(0, logged "log_error" + logged "log_warn")
+      assert.are.equal("Bold", cfg.attribute_aliases.loud)
+      assert.are.equal("Italic", cfg.attribute_aliases.i)
+      assert.are.equal(transform, cfg.text.transform)
+    end)
+
+    it("drops a non-function transform", function()
+      local cfg = ribbon.setup { text = { transform = "upper" } }
+
+      assert.is_nil(cfg.text.transform)
+      assert.are.equal(1, logged "log_error")
+    end)
+
+    it("ignores a non-table options value", function()
+      assert.has_no.errors(function()
+        ribbon.setup "oops"
+      end)
+    end)
+
+    it("skips validation and never loads warden when validate = false", function()
+      local deps = require "ribbon.deps"
+      local real = deps.warden
+      finally(function()
+        deps.warden = real
+      end)
+      deps.warden = function()
+        error "warden loaded"
+      end
+
+      local cfg = ribbon.setup { validate = false, strict_mode = "yes" }
+
+      assert.are.equal("yes", cfg.strict_mode)
+      assert.are.equal(0, logged "log_error" + logged "log_warn")
+    end)
+  end)
 end)
