@@ -1,11 +1,11 @@
-# ribbon.wz
+# ribbon.wz [![Release](https://img.shields.io/github/v/release/sravioli/ribbon.wz?style=flat&label=Release&logo=github)](https://github.com/sravioli/ribbon.wz/releases/latest)
 
 [![Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/michaelbrusegard/awesome-wezterm)
-[![Tests](https://img.shields.io/github/actions/workflow/status/sravioli/ribbon.wz/tests.yaml?style=flat-square&label=tests)](https://github.com/sravioli/ribbon.wz/actions/workflows/tests.yaml)
-[![Lint](https://img.shields.io/github/actions/workflow/status/sravioli/ribbon.wz/lint.yaml?style=flat-square&label=lint)](https://github.com/sravioli/ribbon.wz/actions/workflows/lint.yaml)
-[![Coverage](https://img.shields.io/coverallsCoverage/github/sravioli/ribbon.wz?label=Coverage&logo=coveralls)](https://coveralls.io/github/sravioli/ribbon.wz)
-[![Code license](https://img.shields.io/badge/code-GPL--2.0-blue?style=flat-square)](../LICENSE)
-[![Docs license](https://img.shields.io/badge/docs-CC_BY--NC_4.0-blue?style=flat-square)](../LICENSE-DOCS)
+[![Tests](https://img.shields.io/github/actions/workflow/status/sravioli/ribbon.wz/tests.yaml?style=flat&label=Tests&logo=githubactions)](https://github.com/sravioli/ribbon.wz/actions/workflows/tests.yaml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/sravioli/ribbon.wz/lint.yaml?style=flat&label=Lint&logo=githubactions)](https://github.com/sravioli/ribbon.wz/actions/workflows/lint.yaml)
+[![Coverage](https://img.shields.io/coverallsCoverage/github/sravioli/ribbon.wz?style=flat&label=Coverage&logo=coveralls)](https://coveralls.io/github/sravioli/ribbon.wz)
+[![Code license](https://img.shields.io/badge/Code-GPL--2.0-blue?style=flat&logo=gnu)](../LICENSE)
+[![Docs license](https://img.shields.io/badge/Docs-CC_BY--NC_4.0-blue?style=flat&logo=creativecommons)](../LICENSE-DOCS)
 
 Build formatted text for [WezTerm](https://wezterm.org/) with chainable segments.
 
