@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [1.2.0](https://github.com/sravioli/ribbon.wz/compare/e546089c2a120d5a02f20f4f712b032f66a382d8..1.2.0) - 2026-11-16
+#### Features
+- (**config**) validate options with warden - ([e546089](https://github.com/sravioli/ribbon.wz/commit/e546089c2a120d5a02f20f4f712b032f66a382d8)) - sravioli
+#### Documentation
+- (**contributing**) document the signed-commit requirement - ([2f2a488](https://github.com/sravioli/ribbon.wz/commit/2f2a488691fe9a79eda9a12d73fdc0d1d91be4a0)) - sravioli
+- (**contributing**) unify guides and templates - ([0ad3668](https://github.com/sravioli/ribbon.wz/commit/0ad3668fea1f2818114c798366f6cffd7e2ca728)) - sravioli
+- (**readme**) unify badge style and add release badge - ([e91fce4](https://github.com/sravioli/ribbon.wz/commit/e91fce424630d785af85189c9b5205c5ed55dec3)) - sravioli
+- (**readme**) document option validation and checks - ([ddd4d35](https://github.com/sravioli/ribbon.wz/commit/ddd4d358157b531a558eca1ed161bae1269dc908)) - sravioli
+- document working-tree local checkout setup - ([f0f78ac](https://github.com/sravioli/ribbon.wz/commit/f0f78ac56ee7da9196634923b4585ce331aee384)) - sravioli
+#### Tests
+- (**config**) cover option validation - ([08e04a0](https://github.com/sravioli/ribbon.wz/commit/08e04a0ff5cd8c814ddfe2bc3b670ad60260e8c2)) - sravioli
+#### Continuous Integration
+- (**tests**) clone warden.wz for specs - ([6ddfa39](https://github.com/sravioli/ribbon.wz/commit/6ddfa39b40fc9036ca4df99619813fe8caf4dac4)) - sravioli
+- build the API reference from a majority of three LuaLS runs - ([75fc292](https://github.com/sravioli/ribbon.wz/commit/75fc29222bccf8d2e69fb4522caf057d36499cec)) - sravioli
+- update the actions to the versions Dependabot proposed - ([350d2d8](https://github.com/sravioli/ribbon.wz/commit/350d2d887082e0628a701e7f421a9cfc462a50dd)) - sravioli
+- pin StyLua to 2.6.0 - ([24903f3](https://github.com/sravioli/ribbon.wz/commit/24903f3991dc925e70540d74b9b924d556ce6802)) - sravioli
+- fix the flaky API check and the EditorConfig rate limit - ([ee246ec](https://github.com/sravioli/ribbon.wz/commit/ee246ecb706068d020912216e08f953cb38cb6f7)) - sravioli
+- bump the actions group with 7 updates (#3) - ([d66ff02](https://github.com/sravioli/ribbon.wz/commit/d66ff027d3df6852e2dbfa9d6c656b96a0811e08)) - [@sravioli](https://github.com/sravioli)
+- bump the actions group with 7 updates - ([3b36817](https://github.com/sravioli/ribbon.wz/commit/3b36817eee51f8b783916323283784e7b797019a)) - dependabot[bot]
+
+- - -
+
 ## [1.1.2](https://github.com/sravioli/ribbon.wz/compare/9730089e6105541b693be324bf7b569f81c6d61c..1.1.2) - 2026-11-15
 #### Performance Improvements
 - (**bootstrap**) keep plugin list across reloads - ([0384371](https://github.com/sravioli/ribbon.wz/commit/03843716911d23e642e2e6200bbf153d1ed3ed37)) - sravioli
