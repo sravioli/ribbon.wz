@@ -2,8 +2,7 @@
 
 local wezterm = require "wezterm" --[[@as Wezterm]]
 
--- selene: allow(incorrect_standard_library_use)
-local unpack = unpack or table.unpack
+local unpack = table.unpack
 
 ---@class Ribbon.Logger
 ---@field tag string
