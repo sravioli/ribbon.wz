@@ -29,6 +29,7 @@ local tbl = deps.warp.table
 ---@field max_length? integer
 ---@field transform? fun(text: string): string
 
+---@class Ribbon.ConfigModule
 local M = {}
 
 ---@type Ribbon.Config

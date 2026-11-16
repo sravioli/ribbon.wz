@@ -24,7 +24,8 @@ or newer** and Git. No special font is required for plain text.
 
 Automatically loads [warp.wz](https://github.com/sravioli/warp.wz) and
 [warden.wz](https://github.com/sravioli/warden.wz), preferring local API modules
-on `package.path`; dependency failure raises. Invalid options are logged and ignored.
+on `package.path`. Dependency failure raises. Invalid options are logged and ignored.
+
 ### Install and run
 
 Put this in `wezterm.lua`:
@@ -81,7 +82,7 @@ Raw items bypass text processing, attribute validation, color conversion,
 and atomic resets. You can also pass arrays returned by
 [sigil.items](https://github.com/sravioli/sigil.wz).
 Use `prepend_items` when an ordered styled block must appear before existing
-content; see the [prepend limitation](#prepended-text-has-unexpected-styling).
+content. See the [prepend limitation](#prepended-text-has-unexpected-styling).
 
 ## Configuration
 
@@ -103,67 +104,67 @@ the built-in attribute and color maps.
 
 ### Options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `log.enabled` | `boolean` | `true` | Enable Ribbon's internal logger. |
-| `log.threshold` | `"DEBUG"\|"INFO"\|"WARN"\|"ERROR"\|integer` | `"WARN"` | Minimum log level; names are case-insensitive. |
-| `log.sinks.default_enabled` | `boolean` | `true` | Legacy compatibility setting; the internal logger does not use it. |
-| `defaults.foreground` | `string?` | `nil` | Fallback foreground for segments; absent values ultimately use `"none"`. |
-| `defaults.background` | `string?` | `nil` | Fallback background for segments; absent values ultimately use `"none"`. |
-| `defaults.attributes.None` | `string` | `"ResetAttributes"` | Reset marker, not an attribute table. |
-| `defaults.attributes.NoUnderline` | `table` | `{ Underline = "None" }` | Clear underline. |
-| `defaults.attributes.Single` | `table` | `{ Underline = "Single" }` | Single underline. |
-| `defaults.attributes.Double` | `table` | `{ Underline = "Double" }` | Double underline. |
-| `defaults.attributes.Curly` | `table` | `{ Underline = "Curly" }` | Curly underline. |
-| `defaults.attributes.Dotted` | `table` | `{ Underline = "Dotted" }` | Dotted underline. |
-| `defaults.attributes.Dashed` | `table` | `{ Underline = "Dashed" }` | Dashed underline. |
-| `defaults.attributes.Normal` | `table` | `{ Intensity = "Normal" }` | Normal intensity. |
-| `defaults.attributes.Bold` | `table` | `{ Intensity = "Bold" }` | Bold intensity. |
-| `defaults.attributes.Half` | `table` | `{ Intensity = "Half" }` | Half intensity. |
-| `defaults.attributes.Italic` | `table` | `{ Italic = true }` | Enable italic. |
-| `defaults.attributes.NoItalic` | `table` | `{ Italic = false }` | Clear italic. |
-| `defaults.colors.Black` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Maroon` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Green` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Olive` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Navy` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Purple` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Teal` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Silver` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Grey` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Red` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Lime` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Yellow` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Blue` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Fuchsia` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.Aqua` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `defaults.colors.White` | `boolean` | `true` | Recognize as an ANSI color name. |
-| `validate` | `boolean` | `true` | Check options with [warden.wz](https://github.com/sravioli/warden.wz). Set `false` to skip checks and never load warden. |
-| `attribute_aliases.b` | `string` | `"Bold"` | Short attribute alias. |
-| `attribute_aliases.i` | `string` | `"Italic"` | Short attribute alias. |
-| `attribute_aliases.u` | `string` | `"Single"` | Single underline. |
-| `attribute_aliases.dim` | `string` | `"Half"` | Half intensity. |
-| `attribute_aliases.reset` | `string` | `"None"` | Reset all attributes. |
-| `attribute_aliases.highlight` | `string[]` | `{ "Bold", "Single" }` | Ordered attribute group. |
-| `attribute_aliases.emph` | `string[]` | `{ "Bold", "Italic" }` | Ordered attribute group. |
-| `attribute_aliases.subtle` | `string[]` | `{ "Half", "Italic" }` | Ordered attribute group. |
-| `validate_attributes` | `boolean` | `true` | Warn for unknown attribute names. |
-| `strict_mode` | `boolean` | `false` | Raise for unknown names when validation is enabled. |
-| `text.strip` | `boolean` | `false` | Trim surrounding Lua whitespace first. |
-| `text.transform` | `fun(text: string): string` | `nil` | Optional callback transforming the trimmed string; must return a string. |
-| `text.max_length` | `integer?` | `nil` | Byte limit before appending `"..."`; not a display-column or Unicode-character limit. |
-| `atomic` | `boolean` | `false` | Reset attributes after each appended text segment; a constructor argument overrides it. |
+| Option                            | Type                                        | Default                    | Description                                                                                                              |
+| --------------------------------- | ------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `log.enabled`                     | `boolean`                                   | `true`                     | Enable Ribbon's internal logger.                                                                                         |
+| `log.threshold`                   | `"DEBUG"\|"INFO"\|"WARN"\|"ERROR"\|integer` | `"WARN"`                   | Minimum log level. Names are case-insensitive.                                                                           |
+| `log.sinks.default_enabled`       | `boolean`                                   | `true`                     | Legacy compatibility setting. The internal logger does not use it.                                                       |
+| `defaults.foreground`             | `string?`                                   | `nil`                      | Fallback foreground for segments. Absent values ultimately use `"none"`.                                                 |
+| `defaults.background`             | `string?`                                   | `nil`                      | Fallback background for segments. Absent values ultimately use `"none"`.                                                 |
+| `defaults.attributes.None`        | `string`                                    | `"ResetAttributes"`        | Reset marker, not an attribute table.                                                                                    |
+| `defaults.attributes.NoUnderline` | `table`                                     | `{ Underline = "None" }`   | Clear underline.                                                                                                         |
+| `defaults.attributes.Single`      | `table`                                     | `{ Underline = "Single" }` | Single underline.                                                                                                        |
+| `defaults.attributes.Double`      | `table`                                     | `{ Underline = "Double" }` | Double underline.                                                                                                        |
+| `defaults.attributes.Curly`       | `table`                                     | `{ Underline = "Curly" }`  | Curly underline.                                                                                                         |
+| `defaults.attributes.Dotted`      | `table`                                     | `{ Underline = "Dotted" }` | Dotted underline.                                                                                                        |
+| `defaults.attributes.Dashed`      | `table`                                     | `{ Underline = "Dashed" }` | Dashed underline.                                                                                                        |
+| `defaults.attributes.Normal`      | `table`                                     | `{ Intensity = "Normal" }` | Normal intensity.                                                                                                        |
+| `defaults.attributes.Bold`        | `table`                                     | `{ Intensity = "Bold" }`   | Bold intensity.                                                                                                          |
+| `defaults.attributes.Half`        | `table`                                     | `{ Intensity = "Half" }`   | Half intensity.                                                                                                          |
+| `defaults.attributes.Italic`      | `table`                                     | `{ Italic = true }`        | Enable italic.                                                                                                           |
+| `defaults.attributes.NoItalic`    | `table`                                     | `{ Italic = false }`       | Clear italic.                                                                                                            |
+| `defaults.colors.Black`           | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Maroon`          | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Green`           | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Olive`           | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Navy`            | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Purple`          | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Teal`            | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Silver`          | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Grey`            | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Red`             | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Lime`            | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Yellow`          | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Blue`            | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Fuchsia`         | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.Aqua`            | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `defaults.colors.White`           | `boolean`                                   | `true`                     | Recognize as an ANSI color name.                                                                                         |
+| `validate`                        | `boolean`                                   | `true`                     | Check options with [warden.wz](https://github.com/sravioli/warden.wz). Set `false` to skip checks and never load warden. |
+| `attribute_aliases.b`             | `string`                                    | `"Bold"`                   | Short attribute alias.                                                                                                   |
+| `attribute_aliases.i`             | `string`                                    | `"Italic"`                 | Short attribute alias.                                                                                                   |
+| `attribute_aliases.u`             | `string`                                    | `"Single"`                 | Single underline.                                                                                                        |
+| `attribute_aliases.dim`           | `string`                                    | `"Half"`                   | Half intensity.                                                                                                          |
+| `attribute_aliases.reset`         | `string`                                    | `"None"`                   | Reset all attributes.                                                                                                    |
+| `attribute_aliases.highlight`     | `string[]`                                  | `{ "Bold", "Single" }`     | Ordered attribute group.                                                                                                 |
+| `attribute_aliases.emph`          | `string[]`                                  | `{ "Bold", "Italic" }`     | Ordered attribute group.                                                                                                 |
+| `attribute_aliases.subtle`        | `string[]`                                  | `{ "Half", "Italic" }`     | Ordered attribute group.                                                                                                 |
+| `validate_attributes`             | `boolean`                                   | `true`                     | Warn for unknown attribute names.                                                                                        |
+| `strict_mode`                     | `boolean`                                   | `false`                    | Raise for unknown names when validation is enabled.                                                                      |
+| `text.strip`                      | `boolean`                                   | `false`                    | Trim surrounding Lua whitespace first.                                                                                   |
+| `text.transform`                  | `fun(text: string): string`                 | `nil`                      | Optional callback transforming the trimmed string. Must return a string.                                                 |
+| `text.max_length`                 | `integer?`                                  | `nil`                      | Byte limit before appending `"..."`. Not a limit in columns or Unicode characters.                                       |
+| `atomic`                          | `boolean`                                   | `false`                    | Reset attributes after each appended text segment. A constructor argument overrides it.                                  |
 
 The attribute map is a registry, not a set applied to every segment.
-Truthy entries in the color-name map emit `AnsiColor`; other strings emit
+Truthy entries in the color-name map emit `AnsiColor`. Other strings emit
 literal `Color`. Extend these maps through setup as needed.
 
 #### Option validation
 
-Options are checked against a schema when you call setup. Invalid fields are logged and ignored, and the rest still apply; unknown keys in fixed sections log a warning.
-Set `validate = false` once your configuration is stable: warden is then never
-downloaded or loaded, and the options are used exactly as written, so typos and
-wrong types go unnoticed.
+Options are checked against a schema when you call setup. Invalid fields are logged and ignored, and the rest still apply. Unknown keys in fixed sections log a warning.
+Set `validate = false` once your configuration is stable. Ribbon then never
+downloads or loads warden, and uses the options exactly as written. Typos and
+wrong types then go unnoticed.
 
 ```lua
 ribbon.setup { validate = false }
@@ -173,7 +174,7 @@ ribbon.setup { validate = false }
 
 Each setup call merges your options with fresh defaults using Warp's `"force"`
 merge. Nested maps merge and lists replace. Omitted options reset to their
-defaults; previous setup values do not carry over. Ribbon does not reject
+defaults. Previous setup values do not carry over. Ribbon does not reject
 unknown keys. Settings live in Lua state and do not survive config reloads.
 
 Segment creation reads current color, attribute, and text settings. Existing
@@ -191,29 +192,21 @@ items when formatting.
 
 ## API reference
 
-`?` marks optional arguments or nullable results. `Ribbon` is an instance;
-the imported module is `Ribbon.Api`. Methods returning the instance can chain.
+The [API reference](../docs/api.md) lists every function, method, and value
+with its parameters and return values. It is generated from the LuaLS
+annotations in `plugin/`, so it matches the code. It has these sections:
 
-| Signature → Return type | Description |
-| --- | --- |
-| `ribbon.setup(options?) → Ribbon.Config` | Reset configuration to defaults plus overrides. |
-| `ribbon.config.setup(options?) → Ribbon.Config` | Same configuration operation. |
-| `ribbon.config.get() → Ribbon.Config` | Return the live configuration reference. |
-| `ribbon.config.defaults() → Ribbon.Config` | Return a deep copy of defaults. |
-| `ribbon.new(name?, atomic?) → Ribbon` | Construct an empty ribbon; alias `ribbon:new(name?, atomic?)`. Name is for diagnostics. |
-| `r:add(action, background?, foreground?, text?, attributes?) → Ribbon?` | Lower-level segment insertion; use `"append"` or `"prepend"`. Empty action logs and returns `nil`. |
-| `r:append(background?, foreground?, text?, attributes?) → Ribbon?` | Append processed text; attributes are one name/alias or an ordered string list. |
-| `r:prepend(background?, foreground?, text?, attributes?) → Ribbon?` | Prepend processed text; generated format-item order differs from append. |
-| `r:append_items(items) → Ribbon` | Append one raw item or an item list, without processing; `nil` does nothing. |
-| `r:prepend_items(items) → Ribbon` | Prepend raw items in the supplied order. |
-| `r:clear() → Ribbon` | Replace the internal list with an empty list. |
-| `r:reset_attributes() → nil` | Append a reset marker; this method does not chain. |
-| `r:format() → string` | Call `wezterm.format` with the current list. |
-| `r:debug(formatted) → nil` | Log rendered text when true, otherwise the raw list; requires an `INFO` threshold or lower. |
-| `r:items() → table` | Return the live item list, not a copy; mutations affect later renders. |
+- [ribbon](../docs/api.md#ribbon)
+- [ribbon.config](../docs/api.md#ribbonconfig)
+- [Ribbon](../docs/api.md#ribbon)
+- [Ribbon.Logger](../docs/api.md#ribbonlogger)
+- [Types](../docs/api.md#types)
+
+`?` marks optional arguments or nullable results. `Ribbon` is an instance.
+The imported module is `Ribbon.Api`. Methods returning the instance can chain.
 
 `background` comes before `foreground`. Known ANSI names use the current
-terminal palette; hex strings use literal colors. Attributes use names in
+terminal palette. Hex strings use literal colors. Attributes use names in
 the registry or aliases, not raw WezTerm attribute tables. Use `append_items`
 for raw tables.
 
@@ -285,7 +278,7 @@ Specs mock WezTerm and Warp and load a sibling `../warden.wz` checkout. See the
 
 ## License
 
-The [code license file](../LICENSE) contains GNU GPL v2; documentation uses
+The [code license file](../LICENSE) contains GNU GPL v2. Documentation uses
 [CC BY-NC 4.0](../LICENSE-DOCS). Earlier README prose said GPL v3, which
 conflicted with the license file. This documentation update does not change
 the license terms or existing attribution.
