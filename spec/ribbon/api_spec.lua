@@ -151,8 +151,15 @@ describe("ribbon.wz", function()
     assert.are.same({
       { Background = { Color = "none" } },
       { Foreground = { Color = "none" } },
-      { Text = "ABCD..." },
+      { Text = "ABC…" },
     }, r:items())
+  end)
+
+  it("cuts max_length by columns, never inside a multi-byte character", function()
+    ribbon.setup { text = { max_length = 4 } }
+    local text = ribbon.new("Wide"):append(nil, nil, "日本語テキスト"):items()[3].Text
+    assert.is_not_nil(utf8.len(text))
+    assert.is_true(wezterm.column_width(text) <= 4)
   end)
 
   it("warns for unknown attributes by default", function()

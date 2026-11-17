@@ -1,6 +1,7 @@
 ---@module "ribbon.core"
 
 local config = require "ribbon.config"
+local deps = require "ribbon.deps"
 local logger = require "ribbon.logger"
 local wezterm = require "wezterm" --[[@as Wezterm]]
 
@@ -59,8 +60,9 @@ local function process_text(text)
     text = cfg.text.transform(text)
   end
 
-  if cfg.text.max_length and #text > cfg.text.max_length then
-    text = text:sub(1, cfg.text.max_length) .. "..."
+  if cfg.text.max_length then
+    -- By display columns, so multi-byte text is never cut mid-character.
+    text = deps.warp.string.truncate_right(text, cfg.text.max_length)
   end
 
   return text
@@ -90,10 +92,6 @@ end
 ---@param log Ribbon.Logger
 local function insert_attributes(layout, attributes, idx, log)
   local cfg = config.get()
-  if not attributes or (type(attributes) == "table" and #attributes == 0) then
-    attributes = cfg.defaults.attributes
-  end
-
   if not attributes or (type(attributes) == "table" and #attributes == 0) then
     return
   end

@@ -2,8 +2,6 @@
 
 local wezterm = require "wezterm" --[[@as Wezterm]]
 
-local unpack = table.unpack
-
 ---@class Ribbon.Logger
 ---@field tag string
 ---@field enabled boolean
@@ -11,22 +9,7 @@ local unpack = table.unpack
 local M = {}
 M.__index = M
 
-local levels = {
-  DEBUG = 0,
-  INFO = 1,
-  WARN = 2,
-  ERROR = 3,
-}
-
----@param value any
----@return integer
-local function resolve_threshold(value)
-  if type(value) == "number" then
-    return value
-  end
-
-  return levels[tostring(value or "WARN"):upper()] or levels.WARN
-end
+local levels = { DEBUG = 0, INFO = 1, WARN = 2, ERROR = 3 }
 
 ---@param value any
 ---@return string
@@ -34,106 +17,52 @@ local function stringify(value)
   if type(value) == "string" then
     return value
   end
-
-  if wezterm and type(wezterm.to_string) == "function" then
-    local ok, rendered = pcall(wezterm.to_string, value)
-    if ok then
-      return rendered
-    end
-  end
-
-  return tostring(value)
-end
-
----@param message any
----@param ... any
----@return string
-local function format_message(message, ...)
-  local count = select("#", ...)
-  if count == 0 then
-    return stringify(message)
-  end
-
-  local args = {}
-  for i = 1, count do
-    args[i] = stringify(select(i, ...))
-  end
-
-  local ok, formatted = pcall(string.format, stringify(message), unpack(args))
-  return ok and formatted or stringify(message)
-end
-
----@param level integer
----@param tag string
----@param message string
-local function emit(level, tag, message)
-  local line = string.format("[%s] %s", tag, message)
-  local sink
-
-  if level >= levels.ERROR and type(wezterm.log_error) == "function" then
-    sink = wezterm.log_error
-  elseif level >= levels.WARN and type(wezterm.log_warn) == "function" then
-    sink = wezterm.log_warn
-  elseif type(wezterm.log_info) == "function" then
-    sink = wezterm.log_info
-  end
-
-  if sink then
-    sink(line)
-  end
+  local ok, rendered = pcall(wezterm.to_string, value) ---@diagnostic disable-line: undefined-field
+  return ok and type(rendered) == "string" and rendered or tostring(value)
 end
 
 ---@param tag string
----@param cfg Ribbon.LogConfig
+---@param cfg? Ribbon.LogConfig
 ---@return Ribbon.Logger
 function M.new(tag, cfg)
   cfg = cfg or {}
-  return setmetatable({
-    tag = tag,
-    enabled = cfg.enabled ~= false,
-    threshold = resolve_threshold(cfg.threshold),
-  }, M)
+  local threshold = cfg.threshold
+  if type(threshold) ~= "number" then
+    threshold = levels[tostring(threshold or "WARN"):upper()] or levels.WARN
+  end
+  return setmetatable({ tag = tag, enabled = cfg.enabled ~= false, threshold = threshold }, M)
 end
 
 ---@param level integer
 ---@param message any
 ---@param ... any
----@return nil
 function M:write(level, message, ...)
   if not self.enabled or level < self.threshold then
     return nil
   end
-
-  emit(level, self.tag, format_message(message, ...))
+  local text = stringify(message)
+  local n = select("#", ...)
+  if n > 0 then
+    local args = { ... }
+    for i = 1, n do
+      args[i] = stringify(args[i])
+    end
+    local ok, formatted = pcall(string.format, text, table.unpack(args, 1, n))
+    text = ok and formatted or text
+  end
+  -- WezTerm has no debug log; debug goes to info.
+  local sink =
+    wezterm[level >= levels.ERROR and "log_error" or level >= levels.WARN and "log_warn" or "log_info"]
+  if type(sink) == "function" then
+    sink(("[%s] %s"):format(self.tag, text))
+  end
   return nil
 end
 
----@param message any
----@param ... any
----@return nil
-function M:debug(message, ...)
-  return self:write(levels.DEBUG, message, ...)
-end
-
----@param message any
----@param ... any
----@return nil
-function M:info(message, ...)
-  return self:write(levels.INFO, message, ...)
-end
-
----@param message any
----@param ... any
----@return nil
-function M:warn(message, ...)
-  return self:write(levels.WARN, message, ...)
-end
-
----@param message any
----@param ... any
----@return nil
-function M:error(message, ...)
-  return self:write(levels.ERROR, message, ...)
+for name, level in pairs(levels) do
+  M[name:lower()] = function(self, message, ...)
+    return self:write(level, message, ...)
+  end
 end
 
 return M

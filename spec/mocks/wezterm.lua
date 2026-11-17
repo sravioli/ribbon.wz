@@ -25,6 +25,10 @@ M.log_warn = record "log_warn"
 M.log_error = record "log_error"
 M.format = record("format", "<formatted>")
 
+function M.column_width(text)
+  return utf8.len(text) or #text
+end
+
 function M.to_string(value)
   return tostring(value)
 end
@@ -79,7 +83,19 @@ M.plugin = {
         return dst
       end
 
+      -- One column per codepoint: enough to test cuts by character.
+      local function truncate_right(text, budget)
+        if utf8.len(text) <= budget then
+          return text
+        end
+        if budget <= 1 then
+          return "…"
+        end
+        return text:sub(1, utf8.offset(text, budget) - 1) .. "…"
+      end
+
       return {
+        string = { truncate_right = truncate_right },
         table = {
           deepcopy = deepcopy,
           merge = merge,

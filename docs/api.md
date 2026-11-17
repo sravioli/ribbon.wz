@@ -291,13 +291,13 @@ Values:
 ### Ribbon.Logger.new
 
 ```lua
-Ribbon.Logger.new(tag: string, cfg: Ribbon.LogConfig) -> Ribbon.Logger
+Ribbon.Logger.new(tag: string, cfg?: Ribbon.LogConfig) -> Ribbon.Logger
 ```
 
 **Parameters:**
 
 - `tag` (`string`)
-- `cfg` (`Ribbon.LogConfig`)
+- `cfg` (`Ribbon.LogConfig`, optional)
 
 _Returns:_
 
@@ -312,66 +312,6 @@ Ribbon.Logger:write(level: integer, message: any, ...: any) -> nil
 **Parameters:**
 
 - `level` (`integer`)
-- `message` (`any`)
-- `...` (`any`)
-
-_Returns:_
-
-- `#1` (`nil`)
-
-### Ribbon.Logger:debug
-
-```lua
-Ribbon.Logger:debug(message: any, ...: any) -> nil
-```
-
-**Parameters:**
-
-- `message` (`any`)
-- `...` (`any`)
-
-_Returns:_
-
-- `#1` (`nil`)
-
-### Ribbon.Logger:info
-
-```lua
-Ribbon.Logger:info(message: any, ...: any) -> nil
-```
-
-**Parameters:**
-
-- `message` (`any`)
-- `...` (`any`)
-
-_Returns:_
-
-- `#1` (`nil`)
-
-### Ribbon.Logger:warn
-
-```lua
-Ribbon.Logger:warn(message: any, ...: any) -> nil
-```
-
-**Parameters:**
-
-- `message` (`any`)
-- `...` (`any`)
-
-_Returns:_
-
-- `#1` (`nil`)
-
-### Ribbon.Logger:error
-
-```lua
-Ribbon.Logger:error(message: any, ...: any) -> nil
-```
-
-**Parameters:**
-
 - `message` (`any`)
 - `...` (`any`)
 
