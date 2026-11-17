@@ -34,11 +34,12 @@ describe("ribbon.wz", function()
     r:append("Blue", "White", "tail")
     r:prepend("Red", "Black", "head", "Italic")
 
+    -- The prepended segment keeps its own order: colors, attribute, text.
     assert.are.same({
-      { Text = "head" },
-      { Attribute = { Italic = true } },
-      { Foreground = { AnsiColor = "Black" } },
       { Background = { AnsiColor = "Red" } },
+      { Foreground = { AnsiColor = "Black" } },
+      { Attribute = { Italic = true } },
+      { Text = "head" },
       { Background = { AnsiColor = "Blue" } },
       { Foreground = { AnsiColor = "White" } },
       { Text = "tail" },

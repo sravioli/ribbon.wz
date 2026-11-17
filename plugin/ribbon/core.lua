@@ -49,7 +49,7 @@ end
 ---@return string
 local function process_text(text)
   local cfg = config.get()
-  text = text == nil and tostring(text) or tostring(text)
+  text = tostring(text)
 
   if cfg.text.strip then
     text = text:match "^%s*(.-)%s*$"
@@ -185,19 +185,23 @@ function M:add(action, background, foreground, text, attributes)
     return self.log:error "Cannot operate with empty action"
   end
 
+  -- Build the segment in order, then place it: inserting each part at index 1
+  -- would reverse it and put the text before its own colors.
+  local segment = {}
   local idx = function()
-    return action == "prepend" and 1 or #self.layout + 1
+    return #segment + 1
   end
 
-  insert_colors(self.layout, background, foreground, idx)
-  insert_attributes(self.layout, attributes, idx, self.log)
+  insert_colors(segment, background, foreground, idx)
+  insert_attributes(segment, attributes, idx, self.log)
 
-  tinsert(self.layout, idx(), { Text = process_text(text) })
+  tinsert(segment, { Text = process_text(text) })
 
   if self.atomic then
-    tinsert(self.layout, idx(), config.get().defaults.attributes.None)
+    tinsert(segment, config.get().defaults.attributes.None)
   end
 
+  insert_format_items(self.layout, segment, action == "prepend")
   return self
 end
 
