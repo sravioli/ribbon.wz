@@ -53,7 +53,7 @@ local function process_text(text)
   text = tostring(text)
 
   if cfg.text.strip then
-    text = text:match "^%s*(.-)%s*$"
+    text = deps.warp.string.trim(text)
   end
 
   if cfg.text.transform then

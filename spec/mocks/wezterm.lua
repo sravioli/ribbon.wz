@@ -95,7 +95,12 @@ M.plugin = {
       end
 
       return {
-        string = { truncate_right = truncate_right },
+        string = {
+          trim = function(s)
+            return (s:gsub("^%s*(.-)%s*$", "%1"))
+          end,
+          truncate_right = truncate_right,
+        },
         table = {
           deepcopy = deepcopy,
           merge = merge,
