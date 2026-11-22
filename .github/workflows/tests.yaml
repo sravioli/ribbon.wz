@@ -31,7 +31,7 @@ jobs:
             git -C "../$name.wz" fetch -q --depth 1 "https://github.com/sravioli/$name.wz" "$ref"
             git -C "../$name.wz" checkout -q FETCH_HEAD
           done <<'EOF'
-          warden main
+          warp main
           EOF
 
       - name: Install Lua

@@ -1,35 +1,17 @@
 ---@module "ribbon.api"
 
-local Ribbon = require "ribbon.core"
-local config = require "ribbon.config"
+---ribbon.wz now lives in warp.wz as `warp.ribbon`. This keeps the old URL working,
+---and returns the same instance, so `ribbon.setup` still reaches every plugin.
 
----@class Ribbon.Api
----@field config Ribbon.ConfigModule
-local M = {
-  config = config,
-}
+local wezterm = require "wezterm"
 
----@param self_or_name Ribbon.Api|string|nil
----@param name_or_atomic? string|boolean
----@param atomic? boolean
----@return Ribbon
-function M.new(self_or_name, name_or_atomic, atomic)
-  local name = self_or_name
-  local is_atomic = name_or_atomic
-
-  if self_or_name == M then
-    name = name_or_atomic
-    is_atomic = atomic
-  end
-
-  return Ribbon.new(name, is_atomic)
+local ok, warp = pcall(require, "warp.api")
+if not ok then
+  warp = wezterm.plugin.require "https://github.com/sravioli/warp.wz"
 end
 
----Configure Ribbon.
----@param opts? table
----@return Ribbon.Config
-function M.setup(opts)
-  return config.setup(opts)
-end
+---Same table as `warp.ribbon`; see the warp.wz API reference.
+---@class RibbonWz
+local M = warp.ribbon
 
 return M

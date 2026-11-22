@@ -1,0 +1,5 @@
+describe("ribbon.wz", function()
+  it("returns warp.ribbon", function()
+    assert.are.equal(require("warp.api").ribbon, require "ribbon.api")
+  end)
+end)

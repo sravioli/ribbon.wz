@@ -18,8 +18,8 @@ We do not accept translations, social media posts, or outreach work.
 
 ## Overview
 
-ribbon.wz builds the item lists that [WezTerm](https://wezterm.org/) `format`
-takes. You chain calls to add text, colors, and attributes.
+ribbon.wz moved into [warp.wz](https://github.com/sravioli/warp.wz) as
+`warp.ribbon`. This URL still works: it returns `warp.ribbon`.
 
 The [README](readme.md) tells you how to use the plugin.
 
@@ -72,11 +72,11 @@ You need:
    local ribbon = require "ribbon.api"
    ```
 
-   Specs load warden.wz from a sibling checkout,
+   Specs load warp.wz from a sibling checkout,
    so clone it next to this repository:
 
    ```sh
-   git clone https://github.com/sravioli/warden.wz ../warden.wz
+   git clone https://github.com/sravioli/warp.wz ../warp.wz
    ```
 
 4. Run the checks to make sure that the setup works:
