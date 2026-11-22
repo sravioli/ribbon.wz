@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [2.0.0](https://github.com/sravioli/ribbon.wz/compare/7b7b1f97f01052a871eb5c179c12b9fdd1588e99..2.0.0) - 2026-11-22
+#### Bug Fixes
+- (**config**) drop only the invalid options - ([e780ab4](https://github.com/sravioli/ribbon.wz/commit/e780ab47b1b79d26569c1d4b24cd68b0fee4aa42)) - sravioli
+- (**core**) truncate max_length by display column - ([1250c70](https://github.com/sravioli/ribbon.wz/commit/1250c70a65400d0784af9bc02d93610452695e9f)) - sravioli
+- (**core**) keep prepended segments in order - ([9fbca57](https://github.com/sravioli/ribbon.wz/commit/9fbca571ae47a1d809678dca7ee97864a19f9b44)) - sravioli
+#### Documentation
+- (**readme**) point to warp.ribbon - ([af50acc](https://github.com/sravioli/ribbon.wz/commit/af50acc1d8dbfb1d6a583ad05e050adbd8f9dbd7)) - sravioli
+- add minit.lua for reproducing bugs - ([7b7b1f9](https://github.com/sravioli/ribbon.wz/commit/7b7b1f97f01052a871eb5c179c12b9fdd1588e99)) - sravioli
+#### Continuous Integration
+- pass the release tag to the shell through env - ([6157131](https://github.com/sravioli/ribbon.wz/commit/615713193f1c40e7a51905b7f616ab85b7fa2e15)) - sravioli
+- release from the pushed tag - ([5f54493](https://github.com/sravioli/ribbon.wz/commit/5f54493250d2d04f51cdb94bdcd51a884e02a84e)) - sravioli
+- count only the plugin's own files in coverage - ([fc79b40](https://github.com/sravioli/ribbon.wz/commit/fc79b4065984b8a6aed9da85fcb30c4df3934834)) - sravioli
+#### Refactoring
+- (**core**) strip text with warp.string.trim - ([50c112e](https://github.com/sravioli/ribbon.wz/commit/50c112ea616f07b2d582a7f7e48ca20e6a026494)) - sravioli
+- ![BREAKING](https://img.shields.io/badge/BREAKING-red) return warp.ribbon from warp.wz - ([3b6bd42](https://github.com/sravioli/ribbon.wz/commit/3b6bd42c8f5c9debffb2fb21e637967bcb922669)) - sravioli
+
+- - -
+
 ## [1.2.0](https://github.com/sravioli/ribbon.wz/compare/e546089c2a120d5a02f20f4f712b032f66a382d8..1.2.0) - 2026-11-16
 #### Features
 - (**config**) validate options with warden - ([e546089](https://github.com/sravioli/ribbon.wz/commit/e546089c2a120d5a02f20f4f712b032f66a382d8)) - sravioli
